@@ -127,6 +127,7 @@ Stored in:
 
 \- `{chatcolor.format.%uuid of player%}`: Format
 
+![image](https://github.com/user-attachments/assets/36016cfc-df0b-4f38-97da-21b3f8672628)
 
 
 \## Troubleshooting
