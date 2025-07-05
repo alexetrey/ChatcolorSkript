@@ -1,0 +1,239 @@
+variables:
+    {chatcolor::%player%} = "&f"
+    {chatcolor::enabled::%player%} = true
+
+command /chatcolor [<text>]:
+    permission: chatcolor.use
+    trigger:
+        if arg-1 is not set:
+            open_chatcolor_gui(player)
+        else if arg-1 is "reset":
+            if player has permission "chatcolor.admin":
+                set {chatcolor::%player%} to "&f"
+                send "&8[&6ChatColor&8] &aYour chat color has been reset to default!"
+            else:
+                send "&8[&6ChatColor&8] &cYou don't have permission to use this command!"
+        else if arg-1 is "toggle":
+            if {chatcolor::enabled::%player%} is true:
+                set {chatcolor::enabled::%player%} to false
+                send "&8[&6ChatColor&8] &cChat color disabled!"
+            else:
+                set {chatcolor::enabled::%player%} to true
+                send "&8[&6ChatColor&8] &aChat color enabled!"
+        else:
+            send "&8[&6ChatColor&8] &cUsage: /chatcolor [reset|toggle]"
+
+function open_chatcolor_gui(p: player):
+    set {_inv} to chest inventory with 6 rows named "&8ChatColor Selection"
+    open {_inv} to {_p}
+    wait 1 tick
+    
+    loop 54 times:
+        set slot (loop-number - 1) of {_inv} to red stained glass pane named " "
+    
+    set slot 10 of {_inv} to red wool named "&cRed" with lore "&7Click to select red chat color"
+    set slot 11 of {_inv} to orange wool named "&6Orange" with lore "&7Click to select orange chat color"
+    set slot 12 of {_inv} to yellow wool named "&eYellow" with lore "&7Click to select yellow chat color"
+    set slot 13 of {_inv} to lime wool named "&aGreen" with lore "&7Click to select green chat color"
+    set slot 14 of {_inv} to light blue wool named "&bAqua" with lore "&7Click to select aqua chat color"
+    set slot 15 of {_inv} to blue wool named "&9Blue" with lore "&7Click to select blue chat color"
+    set slot 16 of {_inv} to purple wool named "&dPink" with lore "&7Click to select pink chat color"
+    
+    set slot 19 of {_inv} to black wool named "&0Black" with lore "&7Click to select black chat color"
+    set slot 20 of {_inv} to gray wool named "&8Dark Gray" with lore "&7Click to select dark gray chat color"
+    set slot 21 of {_inv} to light gray wool named "&7Gray" with lore "&7Click to select gray chat color"
+    set slot 22 of {_inv} to white wool named "&fWhite" with lore "&7Click to select white chat color"
+    set slot 23 of {_inv} to green wool named "&2Dark Green" with lore "&7Click to select dark green chat color"
+    set slot 24 of {_inv} to cyan wool named "&3Dark Aqua" with lore "&7Click to select dark aqua chat color"
+    set slot 25 of {_inv} to magenta wool named "&5Purple" with lore "&7Click to select purple chat color"
+    
+    if {_p} has permission "chatcolor.special":
+        set slot 28 of {_inv} to enchanted book named "&k&lMagic" with lore "&7Click for magic text effect" and "&cRequires special permission"
+        set slot 29 of {_inv} to enchanted book named "&l&nBold Underline" with lore "&7Click for bold underlined text" and "&cRequires special permission"
+        set slot 30 of {_inv} to enchanted book named "&o&9Italic Blue" with lore "&7Click for italic blue text" and "&cRequires special permission"
+        set slot 31 of {_inv} to enchanted book named "&m&4Strikethrough" with lore "&7Click for strikethrough text" and "&cRequires special permission"
+        set slot 32 of {_inv} to nether star named "&c&6&e&a&b&9&d&5Rainbow" with lore "&7Click for rainbow text effect" and "&cRequires special permission"
+    
+    set {_current_color} to {chatcolor::%{_p}%}
+    set {_status} to "&aEnabled" if {chatcolor::enabled::%{_p}%} is true, else "&cDisabled"
+    set slot 40 of {_inv} to player head named "&6Current Color" with lore "&7Your current color: %{_current_color}%Example Text" and "&7Status: %{_status}%"
+    
+    set slot 45 of {_inv} to barrier named "&cClose" with lore "&7Click to close this menu"
+    set slot 49 of {_inv} to lever named "&6Toggle Color" with lore "&7Click to enable/disable chat color"
+    set slot 53 of {_inv} to paper named "&fReset Color" with lore "&7Click to reset to default white"
+
+function apply_rainbow(text: text) :: text:
+    set {_colors::*} to "&c", "&6", "&e", "&a", "&b", "&9", "&d", "&5"
+    set {_result} to ""
+    set {_color_index} to 1
+    
+    loop length of {_text} times:
+        set {_char} to character at loop-number in {_text}
+        if {_char} is not " ":
+            set {_result} to "%{_result}%%{_colors::%{_color_index}%}%%{_char}%"
+            add 1 to {_color_index}
+            if {_color_index} > size of {_colors::*}:
+                set {_color_index} to 1
+        else:
+            set {_result} to "%{_result}% "
+    
+    return {_result}
+
+on inventory click:
+    if name of current inventory of player is "&8ChatColor Selection":
+        cancel event
+        
+        if clicked slot is 10:
+            set {chatcolor::%player%} to "&c"
+            send "&8[&6ChatColor&8] &cYour chat color is now red!"
+            close player's inventory
+        else if clicked slot is 11:
+            set {chatcolor::%player%} to "&6"
+            send "&8[&6ChatColor&8] &6Your chat color is now orange!"
+            close player's inventory
+        else if clicked slot is 12:
+            set {chatcolor::%player%} to "&e"
+            send "&8[&6ChatColor&8] &eYour chat color is now yellow!"
+            close player's inventory
+        else if clicked slot is 13:
+            set {chatcolor::%player%} to "&a"
+            send "&8[&6ChatColor&8] &aYour chat color is now green!"
+            close player's inventory
+        else if clicked slot is 14:
+            set {chatcolor::%player%} to "&b"
+            send "&8[&6ChatColor&8] &bYour chat color is now aqua!"
+            close player's inventory
+        else if clicked slot is 15:
+            set {chatcolor::%player%} to "&9"
+            send "&8[&6ChatColor&8] &9Your chat color is now blue!"
+            close player's inventory
+        else if clicked slot is 16:
+            set {chatcolor::%player%} to "&d"
+            send "&8[&6ChatColor&8] &dYour chat color is now pink!"
+            close player's inventory
+        
+        else if clicked slot is 19:
+            set {chatcolor::%player%} to "&0"
+            send "&8[&6ChatColor&8] &0Your chat color is now black!"
+            close player's inventory
+        else if clicked slot is 20:
+            set {chatcolor::%player%} to "&8"
+            send "&8[&6ChatColor&8] &8Your chat color is now dark gray!"
+            close player's inventory
+        else if clicked slot is 21:
+            set {chatcolor::%player%} to "&7"
+            send "&8[&6ChatColor&8] &7Your chat color is now gray!"
+            close player's inventory
+        else if clicked slot is 22:
+            set {chatcolor::%player%} to "&f"
+            send "&8[&6ChatColor&8] &fYour chat color is now white!"
+            close player's inventory
+        else if clicked slot is 23:
+            set {chatcolor::%player%} to "&2"
+            send "&8[&6ChatColor&8] &2Your chat color is now dark green!"
+            close player's inventory
+        else if clicked slot is 24:
+            set {chatcolor::%player%} to "&3"
+            send "&8[&6ChatColor&8] &3Your chat color is now dark aqua!"
+            close player's inventory
+        else if clicked slot is 25:
+            set {chatcolor::%player%} to "&5"
+            send "&8[&6ChatColor&8] &5Your chat color is now purple!"
+            close player's inventory
+        
+        else if clicked slot is 28:
+            if player has permission "chatcolor.special":
+                set {chatcolor::%player%} to "&k"
+                send "&8[&6ChatColor&8] &k&lYour chat color now has magic effect!"
+                close player's inventory
+            else:
+                send "&8[&6ChatColor&8] &cYou need special permission for this effect!"
+        else if clicked slot is 29:
+            if player has permission "chatcolor.special":
+                set {chatcolor::%player%} to "&l&n&f"
+                send "&8[&6ChatColor&8] &l&nYour chat color is now bold and underlined!"
+                close player's inventory
+            else:
+                send "&8[&6ChatColor&8] &cYou need special permission for this effect!"
+        else if clicked slot is 30:
+            if player has permission "chatcolor.special":
+                set {chatcolor::%player%} to "&o&9"
+                send "&8[&6ChatColor&8] &o&9Your chat color is now italic blue!"
+                close player's inventory
+            else:
+                send "&8[&6ChatColor&8] &cYou need special permission for this effect!"
+        else if clicked slot is 31:
+            if player has permission "chatcolor.special":
+                set {chatcolor::%player%} to "&m&4"
+                send "&8[&6ChatColor&8] &m&4Your chat color now has strikethrough!"
+                close player's inventory
+            else:
+                send "&8[&6ChatColor&8] &cYou need special permission for this effect!"
+        else if clicked slot is 32:
+            if player has permission "chatcolor.special":
+                set {chatcolor::%player%} to "rainbow"
+                send "&8[&6ChatColor&8] &c&6&e&a&b&9&d&5Your chat color is now rainbow!"
+                close player's inventory
+            else:
+                send "&8[&6ChatColor&8] &cYou need special permission for this effect!"
+        
+        else if clicked slot is 45:
+            close player's inventory
+        else if clicked slot is 49:
+            if {chatcolor::enabled::%player%} is true:
+                set {chatcolor::enabled::%player%} to false
+                send "&8[&6ChatColor&8] &cChat color disabled!"
+            else:
+                set {chatcolor::enabled::%player%} to true
+                send "&8[&6ChatColor&8] &aChat color enabled!"
+            close player's inventory
+        else if clicked slot is 53:
+            set {chatcolor::%player%} to "&f"
+            send "&8[&6ChatColor&8] &fYour chat color has been reset to default!"
+            close player's inventory
+
+on chat:
+    if {chatcolor::enabled::%player%} is true:
+        if {chatcolor::%player%} is set:
+            if {chatcolor::%player%} is "rainbow":
+                set message to apply_rainbow(message)
+            else:
+                set message to "%{chatcolor::%player%}%%message%"
+
+on join:
+    if {chatcolor::%player%} is not set:
+        set {chatcolor::%player%} to "&f"
+        set {chatcolor::enabled::%player%} to true
+
+command /chatcoloradmin [<offline player>] [<text>]:
+    permission: chatcolor.admin
+    trigger:
+        if arg-1 is not set:
+            send "&8[&6ChatColor&8] &cUsage: /chatcoloradmin <player> <reset|disable|enable>"
+        else if arg-2 is "reset":
+            set {chatcolor::%arg-1%} to "&f"
+            send "&8[&6ChatColor&8] &aReset chat color for %arg-1%!"
+            if arg-1 is online:
+                send "&8[&6ChatColor&8] &7Your chat color has been reset by an admin!" to arg-1
+        else if arg-2 is "disable":
+            set {chatcolor::enabled::%arg-1%} to false
+            send "&8[&6ChatColor&8] &cDisabled chat color for %arg-1%!"
+            if arg-1 is online:
+                send "&8[&6ChatColor&8] &7Your chat color has been disabled by an admin!" to arg-1
+        else if arg-2 is "enable":
+            set {chatcolor::enabled::%arg-1%} to true
+            send "&8[&6ChatColor&8] &aEnabled chat color for %arg-1%!"
+            if arg-1 is online:
+                send "&8[&6ChatColor&8] &7Your chat color has been enabled by an admin!" to arg-1
+        else:
+            send "&8[&6ChatColor&8] &cUsage: /chatcoloradmin <player> <reset|disable|enable>"
+
+command /chatcolorhelp:
+    permission: chatcolor.use
+    trigger:
+        send "&8&m                    &8[ &6ChatColor Help &8]&m                    "
+        send "&6/chatcolor &7- Open the color selection GUI"
+        send "&6/chatcolor toggle &7- Enable/disable chat color"
+        send "&6/chatcolor reset &7- Reset to default white (admin only)"
+        send "&6/chatcoloradmin <player> <action> &7- Manage other players (admin only)"
+        send "&7Available actions: reset, disable, enable"
