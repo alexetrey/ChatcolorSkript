@@ -12,15 +12,15 @@ Made by alexetrey
 
 
 
-- \*\*Color Customization\*\*: 16 Minecraft colors, rainbow effect for VIPs, GUI or commands.
+- **Color Customization**: 16 Minecraft colors, rainbow effect for VIPs, GUI or commands.
 
-- \*\*Text Formatting\*\*: Bold, italic, underline, strikethrough, mix with colors.
+- **Text Formatting**: Bold, italic, underline, strikethrough, mix with colors.
 
-- \*\*GUI\*\*: 6-row chest with borders, clear color/format display, preview/reset/confirm buttons.
+- **GUI**: 6-row chest with borders, clear color/format display, preview/reset/confirm buttons.
 
-\- \*\*Sounds\*\*: Toggleable sounds for actions, admin-controlled.
+- **Sounds**: Toggleable sounds for actions, admin-controlled.
 
-- \*\*Permissions\*\*: Basic use, admin commands, special colors (rainbow, future gradients).
+- **Permissions**: Basic use, admin commands, special colors (rainbow, future gradients).
 
 
 
