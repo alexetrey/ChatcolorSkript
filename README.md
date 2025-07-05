@@ -1,169 +1,170 @@
-\# ChatColor Skript
+# ChatColor Skript
 
 
 
 A Minecraft chat color plugin for Skript with a user-friendly GUI.
 Made by alexetrey
 
+![image](https://github.com/user-attachments/assets/cc9d94d8-cb21-4d08-a9d4-e9fee72d94be)
 
 
-\## Features
+## Features
 
 
 
-\- \*\*Color Customization\*\*: 16 Minecraft colors, rainbow effect for VIPs, GUI or commands.
+- \*\*Color Customization\*\*: 16 Minecraft colors, rainbow effect for VIPs, GUI or commands.
 
-\- \*\*Text Formatting\*\*: Bold, italic, underline, strikethrough, mix with colors.
+- \*\*Text Formatting\*\*: Bold, italic, underline, strikethrough, mix with colors.
 
-\- \*\*GUI\*\*: 6-row chest with borders, clear color/format display, preview/reset/confirm buttons.
+- \*\*GUI\*\*: 6-row chest with borders, clear color/format display, preview/reset/confirm buttons.
 
 \- \*\*Sounds\*\*: Toggleable sounds for actions, admin-controlled.
 
-\- \*\*Permissions\*\*: Basic use, admin commands, special colors (rainbow, future gradients).
+- \*\*Permissions\*\*: Basic use, admin commands, special colors (rainbow, future gradients).
 
 
 
-\## Installation
+## Installation
 
 
 
-1\. Need Skript plugin (latest) and Minecraft 1.13+.
+1. Need Skript plugin (latest) and Minecraft 1.13+.
 
-2\. Put script in `/plugins/Skript/scripts/`.
+2. Put script in `/plugins/Skript/scripts/`.
 
-3\. Reload with `/sk reload chatcolor`.
+3. Reload with `/sk reload chatcolor`.
 
-4\. Set permissions.
-
-
-
-\## Commands
+4. Set permissions.
 
 
 
-\*\*Player\*\*:
-
-\- `/chatcolor`: Open GUI (`chatcolor.use`)
-
-\- `/chatcolor <color>`: Set color (`chatcolor.use`)
-
-\- `/chatcolor reset`: Clear color (`chatcolor.use`)
-
-\- `/chatcolor preview <color>`: Preview color (`chatcolor.use`)
-
-\- `/chatcolor format <type>`: Set format (`chatcolor.use`)
+## Commands
 
 
 
-\*\*Admin\*\*:
+**Player**:
 
-\- `/chatcoloradmin reload`: Reload config (`chatcolor.admin`)
+- `/chatcolor`: Open GUI (`chatcolor.use`)
 
-\- `/chatcoloradmin sounds`: Toggle sounds (`chatcolor.admin`)
+- `/chatcolor <color>`: Set color (`chatcolor.use`)
 
-\- `/chatcoloradmin reset <player>`: Reset player's color (`chatcolor.admin`)
+- `/chatcolor reset`: Clear color (`chatcolor.use`)
 
+- `/chatcolor preview <color>`: Preview color (`chatcolor.use`)
 
-
-\## Permissions
-
-
-
-\- `chatcolor.use`: Use plugin
-
-\- `chatcolor.admin`: Admin commands
-
-\- `chatcolor.rainbow`: Rainbow colors
-
-\- `chatcolor.gradient`: Future gradients
+- `/chatcolor format <type>`: Set format (`chatcolor.use`)
 
 
 
-\## Configuration
+**Admin**:
+
+- `/chatcoloradmin reload`: Reload config (`chatcolor.admin`)
+
+- `/chatcoloradmin sounds`: Toggle sounds (`chatcolor.admin`)
+
+- `/chatcoloradmin reset <player>`: Reset player's color (`chatcolor.admin`)
 
 
 
-\- \*\*Colors\*\*: Red, blue, green, yellow, gold, light purple, aqua, dark versions, white, black.
-
-\- \*\*Formats\*\*: Bold (`\&l`), italic (`\&o`), underline (`\&n`), strikethrough (`\&m`).
-
-\- \*\*Sounds\*\*: Toggle with `/chatcoloradmin sounds`.
+## Permissions
 
 
 
-\## Customization
+- `chatcolor.use`: Use plugin
+
+- `chatcolor.admin`: Admin commands
+
+- `chatcolor.rainbow`: Rainbow colors
+
+- `chatcolor.gradient`: Future gradients
 
 
 
-\- Edit GUI colors in `openColorGUI`.
-
-\- Change sounds in config (e.g., `sound-click: block.note\_block.pling`).
-
-\- Adjust 6-row GUI layout in `openColorGUI`.
+## Configuration
 
 
 
-\## Examples
+- **Colors**: Red, blue, green, yellow, gold, light purple, aqua, dark versions, white, black.
+
+- **Formats**: Bold (`\&l`), italic (`\&o`), underline (`\&n`), strikethrough (`\&m`).
+
+- **Sounds**: Toggle with `/chatcoloradmin sounds`.
 
 
 
-\- `/chatcolor red` – Set red color
-
-\- `/chatcolor format bold` – Bold text
-
-\- `/chatcolor preview gold` – Preview gold
-
-\- `/chatcolor reset` – Clear color
+## Customization
 
 
 
-\## Data
+- Edit GUI colors in `openColorGUI`.
+
+- Change sounds in config (e.g., `sound-click: block.note\_block.pling`).
+
+- Adjust 6-row GUI layout in `openColorGUI`.
+
+
+
+## Examples
+
+
+
+- `/chatcolor red` – Set red color
+
+- `/chatcolor format bold` – Bold text
+
+- `/chatcolor preview gold` – Preview gold
+
+- `/chatcolor reset` – Clear color
+
+
+
+## Data
 
 
 
 Stored in:
 
-\- `{chatcolor.%uuid of player%}`: Color
+- `{chatcolor.%uuid of player%}`: Color
 
-\- `{chatcolor.format.%uuid of player%}`: Format
-
-![image](https://github.com/user-attachments/assets/36016cfc-df0b-4f38-97da-21b3f8672628)
-
-
-\## Troubleshooting
-
-
-
-\- \*\*GUI not opening\*\*: Check `chatcolor.use` permission, Skript load.
-
-\- \*\*Colors not working\*\*: Check for plugin conflicts, console errors.
-
-\- \*\*Sounds not playing\*\*: Ensure sounds enabled, valid for server version.
+- `{chatcolor.format.%uuid of player%}`: Format
 
 
 
 
+## Troubleshooting
 
-\# Support https://discord.gg/CeGSzrRdV7
+
+
+- **GUI not opening**: Check `chatcolor.use` permission, Skript load.
+
+- **Colors not working**: Check for plugin conflicts, console errors.
+
+- **Sounds not playing**: Ensure sounds enabled, valid for server version.
 
 
 
 
 
-3
+# Support https://discord.gg/CeGSzrRdV7
 
-\## 📘 License
+
+
+
+
+
+
+## 📘 License
 
 
 
 Free to use and modify — credit appreciated!
 
 
-\*\*v2.0\*\*:
+**v2.0**:
 
-\- Better GUI, formatting, sounds, admin commands, rainbow colors, tab completion.
+- Better GUI, formatting, sounds, admin commands, rainbow colors, tab completion.
 
-\*\*v1.0\*\*:
+**v1.0**:
 
 \- Basic colors, simple GUI, core formatting.
 
